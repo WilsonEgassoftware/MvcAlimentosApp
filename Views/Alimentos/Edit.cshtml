@@ -1,0 +1,18 @@
+﻿<form method="post" asp-action="Edit" class="w-50 mx-auto mt-4">
+    <div class="mb-3">
+        <label class="form-label">Nombre:</label>
+        <input type="text" name="Nombre" value="@Model.Nombre" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Categoría:</label>
+        <input type="text" name="Categoria" value="@Model.Categoria" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Empresa:</label>
+        <input type="text" name="Empresa" value="@Model.Empresa" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>

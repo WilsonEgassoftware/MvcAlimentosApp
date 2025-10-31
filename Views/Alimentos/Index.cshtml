@@ -1,0 +1,114 @@
+﻿@{
+    var usuario = Context.Session.GetString("Usuario");
+    var rol = Context.Session.GetString("Rol");
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        min-height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .container {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        padding: 30px;
+        max-width: 900px;
+        width: 100%;
+    }
+
+    h2 {
+        color: #0d47a1;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    table {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table-dark {
+        background-color: #1976d2 !important;
+        color: white;
+    }
+
+    .btn-primary {
+        background-color: #1565c0;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0d47a1;
+        }
+
+    .btn-secondary {
+        background-color: #455a64;
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #263238;
+        }
+
+    .footer {
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #666;
+    }
+</style>
+
+<div class="container text-center">
+    <h2>Lista de Alimentos</h2>
+    <p>Usuario: <strong>@usuario</strong> (@rol)</p>
+
+    <a href="@Url.Action("Logout", "Auth")" class="btn btn-secondary mb-3">Cerrar Sesión</a>
+
+    <table class="table table-bordered table-striped text-center mx-auto" style="width:80%">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Empresa</th>
+                @if (rol == "Admin")
+                {
+                    <th>Acciones</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var alimento in Model)
+            {
+                <tr>
+                    <td>@alimento.Id</td>
+                    <td>@alimento.Nombre</td>
+                    <td>@alimento.Categoria</td>
+                    <td>@alimento.Empresa</td>
+                    @if (rol == "Admin")
+                    {
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = alimento.Id })" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="@Url.Action("Delete", new { id = alimento.Id })" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (rol == "Admin")
+    {
+        <a href="@Url.Action("Create")" class="btn btn-primary mt-3">Agregar Nuevo</a>
+    }
+
+    <div class="footer">
+        <p>Aplicación MvcAlimentosApp © 2025</p>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = " 🍎Tabla Gestión de Alimentos";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        width: 320px;
+        text-align: center;
+    }
+
+        .login-container h2 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .login-container button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 95%;
+        }
+
+            .login-container button:hover {
+                background-color: #1e40af;
+            }
+
+    .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="login-container">
+    <h2> 🍎Tabla Gestión de Alimentos🍎 </h2>
+    <form method="post" asp-action="Login">
+        <input type="text" name="Username" placeholder="Usuario" required />
+        <input type="password" name="Password" placeholder="Contraseña" required />
+        <button type="submit">Ingresar</button>
+    </form>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="error">@ViewBag.Error</p>
+    }
+</div>
+
