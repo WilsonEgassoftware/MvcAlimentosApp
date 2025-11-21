@@ -1,22 +1,180 @@
-https://foodmanager-mvc.onrender.com
-@{
-    Layout = null;
-}
-
+//https://foodmanager-mvc.onrender.com
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Food Manager MVC</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>MVC Alimentos</title>
+
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <style>
+        body { background: #1e293b; color: white; }
+        .card { border-radius: 15px; }
+        .hidden { display: none; }
+        table { background: white !important; color: black !important; }
+    </style>
 </head>
-<body style="background:#1e293b; color:white;">
+<body>
 
-    <div class="container text-center mt-5">
-        <h1>Bienvenido a Food Manager MVC</h1>
-        <p class="mt-3">Aplicación funcional en Render</p>
+   
+    <!-- ============= LOGIN PAGE ======================== -->
+   
+    <div id="loginPage" class="container col-md-4 mt-5">
+        <div class="card p-4 text-dark">
+            <h2 class="text-center mb-4">MVC Alimentos</h2>
 
-        <a href="/Auth/Login" class="btn btn-primary mt-4">Ir al Login</a>
+            <label>Usuario:</label>
+            <input id="user" class="form-control mb-3" placeholder="admin / user">
+
+            <label>Contraseña:</label>
+            <input id="pass" type="password" class="form-control mb-3" placeholder="clave">
+
+            <button onclick="login()" class="btn btn-primary w-100">Ingresar</button>
+
+            <p id="msg" class="text-danger text-center mt-3"></p>
+        </div>
     </div>
+
+
+    
+    <!-- ============= ADMIN PAGE ======================== -->
+   
+    <div id="adminPage" class="hidden container mt-5">
+        <h1>Panel Administrador</h1>
+        <p>Puedes editar y eliminar alimentos.</p>
+
+        <table class="table table-bordered table-hover mt-3" id="tablaAdmin">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Alimento</th>
+                    <th>Categoría</th>
+                    <th>Calorías</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="adminBody"></tbody>
+        </table>
+
+        <button onclick="logout()" class="btn btn-danger mt-3">Cerrar Sesión</button>
+    </div>
+
+
+  
+    <!-- ============= USER PAGE ========================= -->
+
+    <div id="userPage" class="hidden container mt-5">
+        <h1>Panel Usuario</h1>
+        <p>Solo puedes visualizar los alimentos.</p>
+
+        <table class="table table-bordered table-hover mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Alimento</th>
+                    <th>Categoría</th>
+                    <th>Calorías</th>
+                </tr>
+            </thead>
+            <tbody id="userBody"></tbody>
+        </table>
+
+        <button onclick="logout()" class="btn btn-danger mt-3">Cerrar Sesión</button>
+    </div>
+
+
+ 
+    <!-- ============= LOGIC + DATA ====================== -->
+  
+    <script>
+        // 10 ALIMENTOS
+        let alimentos = [
+            { id: 1, nombre: "Manzana", categoria: "Fruta", calorias: 52 },
+            { id: 2, nombre: "Pollo", categoria: "Proteína", calorias: 239 },
+            { id: 3, nombre: "Arroz", categoria: "Carbohidrato", calorias: 130 },
+            { id: 4, nombre: "Lechuga", categoria: "Verdura", calorias: 15 },
+            { id: 5, nombre: "Pan", categoria: "Cereal", calorias: 265 },
+            { id: 6, nombre: "Queso", categoria: "Lácteo", calorias: 402 },
+            { id: 7, nombre: "Huevo", categoria: "Proteína", calorias: 155 },
+            { id: 8, nombre: "Tomate", categoria: "Verdura", calorias: 18 },
+            { id: 9, nombre: "Atún", categoria: "Proteína", calorias: 132 },
+            { id: 10, nombre: "Banano", categoria: "Fruta", calorias: 89 }
+        ];
+
+        function login() {
+            let u = document.getElementById("user").value.trim();
+            let p = document.getElementById("pass").value.trim();
+            let msg = document.getElementById("msg");
+
+            if (u === "admin" && p === "1234") {
+                showPage("adminPage");
+                loadTables();
+            } 
+            else if (u === "user" && p === "abcd") {
+                showPage("userPage");
+                loadTables();
+            } 
+            else {
+                msg.innerText = "Credenciales incorrectas";
+            }
+        }
+
+        function showPage(pageId) {
+            document.getElementById("loginPage").classList.add("hidden");
+            document.getElementById("adminPage").classList.add("hidden");
+            document.getElementById("userPage").classList.add("hidden");
+
+            document.getElementById(pageId).classList.remove("hidden");
+        }
+
+        function loadTables() {
+            let adminBody = document.getElementById("adminBody");
+            let userBody = document.getElementById("userBody");
+
+            adminBody.innerHTML = "";
+            userBody.innerHTML = "";
+
+            alimentos.forEach(a => {
+                // ADMIN ROW
+                adminBody.innerHTML += `
+                    <tr>
+                        <td>${a.id}</td>
+                        <td contenteditable="true">${a.nombre}</td>
+                        <td contenteditable="true">${a.categoria}</td>
+                        <td contenteditable="true">${a.calorias}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="eliminar(${a.id})">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+
+                // USER ROW
+                userBody.innerHTML += `
+                    <tr>
+                        <td>${a.id}</td>
+                        <td>${a.nombre}</td>
+                        <td>${a.categoria}</td>
+                        <td>${a.calorias}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Eliminar un alimento
+        function eliminar(id) {
+            alimentos = alimentos.filter(a => a.id !== id);
+            loadTables();
+        }
+
+        function logout() {
+            showPage("loginPage");
+            document.getElementById("msg").innerText = "";
+            document.getElementById("user").value = "";
+            document.getElementById("pass").value = "";
+        }
+    </script>
 
 </body>
 </html>
+
