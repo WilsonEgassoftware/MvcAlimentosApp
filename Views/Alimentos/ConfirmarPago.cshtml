@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Pago confirmado";
+    var metodo = ViewBag.Metodo ?? "No especificado";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg,#ecfdf5,#dcfce7);
+        font-family: Segoe UI, sans-serif;
+        padding: 40px 0;
+    }
+
+    .box {
+        max-width: 700px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 12px;
+        padding: 28px;
+        box-shadow: 0 6px 20px rgba(16,24,40,.06);
+        text-align: center;
+    }
+
+    h1 {
+        color: #059669;
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: #111827;
+    }
+
+    .btn-reg {
+        background: #0f172a;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 18px;
+    }
+</style>
+
+<div class="box">
+    <h1>✔ Pago Realizado Correctamente</h1>
+    <p>Gracias por su compra. Método de pago usado: <strong>@metodo</strong></p>
+
+    <a href="/Alimentos/Index" class="btn-reg">Volver al inicio</a>
+</div>
