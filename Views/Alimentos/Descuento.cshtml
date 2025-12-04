@@ -1,0 +1,54 @@
+@model List<MvcAlimentosApp.Models.Descuento>
+
+@{
+    ViewData["Title"] = "Revisar Descuentos";
+}
+
+<div class="background-container">
+    <div class="form-card">
+        <h2 class="text-center mb-4">Descuentos Disponibles</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped shadow-lg discount-table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Alimento</th>
+                        <th class="text-center">Empresa</th>
+                        <th class="text-center">Descuento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var d in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@d.NombreAlimento</td>
+                            <td class="text-center">@d.Empresa</td>
+                            <td class="text-center">@d.Porcentaje %</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- BOTONES AQUÍ PARA QUE SE VEAN -->
+        <div style="text-align:center; margin-top:25px;">
+
+            <!-- BOTÓN VOLVER -->
+            <a href="/Alimentos/Index"
+               style="background:#2e7d32; color:white; padding:12px 25px; border-radius:8px;
+              text-decoration:none; margin-right:10px; font-size:16px;">
+                🔙 Volver
+            </a>
+
+            <!-- BOTÓN HISTORIAL DE COMPRAS -->
+            <a href="/Compras/Index"
+               style="background:#0d47a1; color:white; padding:12px 25px; border-radius:8px;
+              text-decoration:none; font-size:16px;">
+                📜 Historial de Compras
+            </a>
+
+        </div>
+        <!-- FIN BOTONES -->
+
+    </div>
+</div>
