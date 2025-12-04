@@ -1,0 +1,19 @@
+@model List<string>
+
+<h2 class="text-center mt-3">Empresas Registradas</h2>
+
+<table class="table table-hover table-bordered w-50 mx-auto mt-4">
+    <thead class="table-warning">
+        <tr>
+            <th>Empresa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e</td>
+            </tr>
+        }
+    </tbody>
+</table>
