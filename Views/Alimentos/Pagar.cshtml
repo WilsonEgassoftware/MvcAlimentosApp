@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Pagar";
+    var total = ViewBag.Total ?? 0;
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg,#fff7ed,#fff1f2);
+        font-family: Segoe UI, sans-serif;
+        padding: 30px 0;
+    }
+
+    .box {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 20px rgba(16,24,40,.06);
+    }
+
+    h2 {
+        text-align: center;
+        color: #0f172a;
+        margin-bottom: 10px;
+    }
+
+    .summary {
+        text-align: center;
+        font-size: 18px;
+        margin: 16px 0;
+    }
+
+    .btn-reg {
+        background: #6b7280;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    .btn-confirm {
+        background: #059669;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    form {
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    select {
+        padding: 8px;
+        border-radius: 6px;
+        width: 70%;
+        max-width: 300px;
+    }
+</style>
+
+<div class="box">
+    <h2>Resumen de Pago</h2>
+
+    <div class="summary">
+        Total a pagar: <strong>$@((decimal)total).ToString("0.00")</strong>
+    </div>
+
+    <form method="post" action="/Alimentos/ConfirmarPago">
+        <div>
+            <label for="metodo">Método de pago</label><br />
+            <select id="metodo" name="metodo" required>
+                <option value="">-- Seleccione --</option>
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Transferencia">Transferencia</option>
+            </select>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:18px;">
+            <a href="/Alimentos/Carrito" class="btn-reg">← Regresar</a>
+            <button type="submit" class="btn-confirm">Confirmar y Pagar</button>
+        </div>
+    </form>
+</div>
