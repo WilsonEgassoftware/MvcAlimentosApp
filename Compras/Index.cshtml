@@ -1,0 +1,32 @@
+@using MvAlimentosApp.Models
+@model List<Compra>
+
+<h2 class="text-center">Historial de Compras</h2>
+
+<table class="table table-bordered text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Detalle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Usuario</td>
+                <td>@c.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>S/. @c.Total</td>
+                <td>
+                    <a href="/Compras/Detalle/@c.Id" class="btn btn-info btn-sm">Ver</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Alimentos/Create" class="btn btn-secondary">Regresar</a>
