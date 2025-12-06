@@ -1,0 +1,106 @@
+{
+    ViewData["Title"] = "🍎Tabla Gestión de Alimentos";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ffe259, #ffa751); /* Amarillo → Naranja */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-container {
+        background: rgba(255, 255, 255, 0.20);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        width: 360px;
+        text-align: center;
+        color: #3a3a3a;
+    }
+
+    .logo {
+        width: 85px;
+        height: 85px;
+        margin-bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid #ffffff;
+        box-shadow: 0 0 12px rgba(255,255,255,0.6);
+    }
+
+    .login-container h2 {
+        color: #3a3a3a;
+        margin-bottom: 20px;
+        font-size: 23px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+    }
+
+    .login-container input {
+        width: 92%;
+        padding: 13px;
+        margin: 12px 0;
+        border-radius: 12px;
+        border: 1px solid #e1e1e1;
+        background: rgba(255,255,255,0.75);
+        color: #333;
+        font-size: 15px;
+        transition: 0.3s ease;
+    }
+
+        .login-container input:focus {
+            border-color: #ff8c42; /* naranja suave */
+            box-shadow: 0 0 10px rgba(255,140,66,0.4);
+            outline: none;
+        }
+
+    .login-container button {
+        background: linear-gradient(90deg, #ff7f00, #ff4500); /* Naranja → Rojo suave */
+        color: white;
+        border: none;
+        padding: 13px 22px;
+        border-radius: 12px;
+        cursor: pointer;
+        width: 95%;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.25s;
+        margin-top: 5px;
+    }
+
+        .login-container button:hover {
+            background: linear-gradient(90deg, #ff6600, #e63900);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+        }
+
+    .error {
+        color: #b30000;
+        font-size: 14px;
+        margin-top: 12px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="login-container">
+    <img src="/img/logo.png" class="logo" alt="Logo">
+
+    <h2> 🍎Tabla Gestión de Alimentos🍎 </h2>
+
+    <form method="post" asp-action="Login">
+        <input type="text" name="Username" placeholder="Usuario" required />
+        <input type="password" name="Password" placeholder="Contraseña" required />
+        <button type="submit">Ingresar</button>
+    </form>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="error">@ViewBag.Error</p>
+    }
+</div>
