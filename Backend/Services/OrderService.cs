@@ -127,7 +127,7 @@ namespace SupermarketAPI.Services
                     UserId = userId,
                     TotalAmount = cart.TotalAmount,
                     Status = "Completed",
-                    PaymentMethod = request.PaymentMethod,
+                    PaymentMethod = request.PaymentMethod ?? "CreditCard",
                     TransactionId = GenerateTransactionId(),
                     CreatedAt = DateTime.UtcNow,
                     CompletedAt = DateTime.UtcNow

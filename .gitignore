@@ -13,6 +13,16 @@
 **/connectionstrings.json
 **/secrets.json
 
+## 🗂️ PROYECTO ANTIGUO (MvAlimentosApp en raíz - no compilar)
+# Si el proyecto antiguo en la raíz causa problemas, descomenta estas líneas:
+# MvAlimentosApp.csproj
+# Program.cs
+# Models/
+# Controller/
+# Services/
+# Repositories/
+# Interfases/
+
 ## 🗑️ CARPETAS DE BUILD Y CACHE (.NET)
 bin/
 obj/
