@@ -55,6 +55,10 @@ jobs:
           name: .net-app
           path: ${{ github.workspace }}/.net-app
       
+      - name: List files in artifact
+        run: dir /b ${{ github.workspace }}/.net-app
+        shell: cmd
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
