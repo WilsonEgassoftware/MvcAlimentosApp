@@ -1,0 +1,29 @@
+═══════════════════════════════════════════════════════════════
+  COMANDO EXACTO PARA EJECUTAR EL BACKEND
+═══════════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE: Si el puerto está ocupado, primero ejecuta:
+   taskkill /F /IM dotnet.exe
+
+Luego ejecuta:
+
+dotnet run --project "C:\Users\ASUS TUF F15\Desktop\salvame\MvcAlimentosApp\Backend\SupermarketAPI.csproj"
+
+═══════════════════════════════════════════════════════════════
+
+O si prefieres navegar primero:
+
+cd "C:\Users\ASUS TUF F15\Desktop\salvame\MvcAlimentosApp\Backend"
+dotnet run
+
+═══════════════════════════════════════════════════════════════
+
+Una vez que veas:
+  "Now listening on: http://localhost:5002"
+  "Now listening on: https://localhost:5001"
+  
+Abre tu navegador en: https://localhost:5001/swagger
+
+NOTA: El puerto HTTP cambió a 5002 para evitar conflictos.
+
+═══════════════════════════════════════════════════════════════

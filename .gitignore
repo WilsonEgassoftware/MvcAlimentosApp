@@ -1,0 +1,157 @@
+## 🔒 SECRETOS Y CONFIGURACIONES SENSIBLES (CRÍTICO - NO SUBIR)
+# Archivos de configuración con secretos
+**/appsettings.json
+**/appsettings.*.json
+!**/appsettings.example.json
+*.env
+*.env.local
+*.env.*.local
+.env
+.secrets
+
+# Connection strings y credenciales
+**/connectionstrings.json
+**/secrets.json
+
+## 🗑️ CARPETAS DE BUILD Y CACHE (.NET)
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+artifacts/
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+
+## 🌐 CARPETAS DE BUILD Y DEPENDENCIAS (React/Node.js)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.nuxt/
+.vite/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+## 🐍 PYTHON (si hay scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+## 🗄️ BASES DE DATOS
+*.db
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+*.ndf
+
+## 🔧 DOCKER
+.dockerignore
+*.dockerfile.bak
+
+## 📦 PAQUETES Y DEPENDENCIAS
+packages/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+## 🧪 TESTING
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+.coverage
+.pytest_cache/
+.coverage.*
+
+## 📝 LOGS Y ARCHIVOS TEMPORALES
+*.log
+logs/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+## 🚨 ARCHIVOS DE EXCEPCIÓN Y ERROR
+*.Exception
+Microsoft.AspNetCore.Connections.AddressInUseException
+System.Net.Sockets.SocketException
+
+## 🎯 IDE SPECIFIC
+.idea/
+*.iml
+*.iws
+*.ipr
+*.sublime-project
+*.sublime-workspace
+
+## 🔐 CERTIFICADOS Y LLAVES
+*.pfx
+*.key
+*.cert
+*.pem
+
+## 📋 OTROS
+*.cache
+*.bak
+*.backup
+*.old
+scratch/
+temp/
+tmp/
