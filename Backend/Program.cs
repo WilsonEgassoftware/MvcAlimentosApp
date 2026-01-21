@@ -130,14 +130,14 @@ builder.Services.AddScoped<IDashboardService, DashboardService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+// IMPORTANTE: CORS debe ir PRIMERO, antes de cualquier otro middleware
+app.UseCors("AllowReactApp");
+
 // Habilitar Swagger en todos los entornos (Development y Production)
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
-
-// IMPORTANTE: CORS debe ir antes de Authentication y Authorization
-app.UseCors("AllowReactApp");
 
 app.UseAuthentication();
 app.UseAuthorization();
