@@ -1,12 +1,24 @@
 import axios from 'axios';
 
-// Usar variable de entorno o URL por defecto
-// En desarrollo: http://localhost:5002/api
-// En producción: https://app-mvcalimentos-sc-d4gueya8gyh2b8ej.eastus2-01.azurewebsites.net/api
-const API_BASE_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.MODE === 'production' 
-    ? 'https://app-mvcalimentos-sc-d4gueya8gyh2b8ej.eastus2-01.azurewebsites.net/api'
-    : 'http://localhost:5002/api');
+// Usar variable de entorno o detectar automáticamente
+// En desarrollo local: http://localhost:5002/api
+// En producción (Azure): https://app-mvcalimentos-sc-d4gueya8gyh2b8ej.eastus2-01.azurewebsites.net/api
+const getApiBaseUrl = () => {
+  // Si hay una variable de entorno, usarla
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  
+  // Si estamos en localhost, usar la API local
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:5002/api';
+  }
+  
+  // En producción (Azure Static Web Apps), usar la API de Azure
+  return 'https://app-mvcalimentos-sc-d4gueya8gyh2b8ej.eastus2-01.azurewebsites.net/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 // Crear instancia de Axios
 const api = axios.create({

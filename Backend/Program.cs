@@ -64,11 +64,12 @@ builder.Services.AddCors(options =>
         {
             "http://localhost:5173", // Vite default port
             "http://localhost:3000", // React default port
+            "https://icy-river-0e8ac9b0f.4.azurestaticapps.net", // Frontend en Azure Static Web Apps
         };
 
         // Agregar URL del frontend desde variable de entorno si existe
         var frontendUrl = builder.Configuration["FrontendUrl"];
-        if (!string.IsNullOrEmpty(frontendUrl))
+        if (!string.IsNullOrEmpty(frontendUrl) && !allowedOrigins.Contains(frontendUrl))
         {
             allowedOrigins.Add(frontendUrl);
         }
