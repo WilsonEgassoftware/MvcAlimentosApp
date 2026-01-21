@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5002/api';
+// Usar variable de entorno o URL por defecto
+// En desarrollo: http://localhost:5002/api
+// En producción: https://app-mvcalimentos-sc-d4gueya8gyh2b8ej.eastus2-01.azurewebsites.net/api
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.MODE === 'production' 
+    ? 'https://app-mvcalimentos-sc-d4gueya8gyh2b8ej.eastus2-01.azurewebsites.net/api'
+    : 'http://localhost:5002/api');
 
 // Crear instancia de Axios
 const api = axios.create({

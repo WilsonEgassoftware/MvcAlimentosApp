@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using SupermarketAPI.Data;
 using SupermarketAPI.Repositories;
 using SupermarketAPI.Services;
+using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,7 +59,21 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://localhost:3000") // Vite default port y React default
+        // URLs permitidas: localhost para desarrollo y Azure Static Web Apps para producción
+        var allowedOrigins = new List<string>
+        {
+            "http://localhost:5173", // Vite default port
+            "http://localhost:3000", // React default port
+        };
+
+        // Agregar URL del frontend desde variable de entorno si existe
+        var frontendUrl = builder.Configuration["FrontendUrl"];
+        if (!string.IsNullOrEmpty(frontendUrl))
+        {
+            allowedOrigins.Add(frontendUrl);
+        }
+
+        policy.WithOrigins(allowedOrigins.ToArray())
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
