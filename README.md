@@ -26,6 +26,7 @@ Solución completa **Full Stack** desarrollada con **.NET 8 Web API** (Backend) 
 - ✅ **Autenticación JWT** con roles (Admin/User)
 - ✅ **Verificación de Email** con tokens
 - ✅ **Gestión de Productos** (CRUD completo)
+- ✅ **Subida de Imágenes** a Azure Blob Storage
 - ✅ **Gestión de Categorías** (CRUD completo)
 - ✅ **Gestión de Proveedores** (CRUD completo)
 - ✅ **Carrito de Compras** en memoria (por usuario)
@@ -44,6 +45,7 @@ Solución completa **Full Stack** desarrollada con **.NET 8 Web API** (Backend) 
 - ✅ **Autenticación** (Login/Registro)
 - ✅ **Verificación de Email**
 - ✅ **Catálogo de Productos** público
+- ✅ **Subida de Imágenes** desde el panel admin
 - ✅ **Carrito de Compras** persistente
 - ✅ **Proceso de Checkout** completo
 - ✅ **Dashboard Admin** con estadísticas
@@ -62,6 +64,7 @@ Solución completa **Full Stack** desarrollada con **.NET 8 Web API** (Backend) 
 - **ASP.NET Core Web API** - Framework web
 - **Entity Framework Core 8.0** - ORM (Code First)
 - **SQL Server** - Base de datos
+- **Azure Blob Storage** - Almacenamiento de imágenes
 - **JWT Bearer Authentication** - Autenticación
 - **MailKit** - Envío de emails
 - **Swagger/OpenAPI** - Documentación de API
@@ -76,6 +79,10 @@ Solución completa **Full Stack** desarrollada con **.NET 8 Web API** (Backend) 
 
 ### DevOps
 - **GitHub Actions** - CI/CD
+- **Azure App Service** - Hosting del backend
+- **Azure Static Web Apps** - Hosting del frontend
+- **Azure SQL Database** - Base de datos en la nube
+- **Azure Blob Storage** - Almacenamiento de archivos
 - **.gitignore** - Protección de secretos
 - **Docker** - Containerización (preparado)
 
@@ -102,7 +109,8 @@ MvcAlimentosApp/
 │   │   ├── CartService.cs          # Lógica del carrito
 │   │   ├── OrderService.cs         # Procesamiento de órdenes
 │   │   ├── DashboardService.cs     # Estadísticas
-│   │   └── EmailService.cs         # Envío de emails
+│   │   ├── EmailService.cs         # Envío de emails
+│   │   └── BlobService.cs          # Subida de imágenes a Azure Blob Storage
 │   ├── Repositories/                # Acceso a datos
 │   │   ├── UserRepository.cs
 │   │   ├── ProductRepository.cs
@@ -182,6 +190,7 @@ MvcAlimentosApp/
 1. **Product** (Producto)
    - `Id`, `Name`, `Description`, `Price`, `Stock`, `ImageUrl`
    - Relación: `Category` (Many-to-One), `Supplier` (Many-to-One)
+   - **Imágenes:** Almacenadas en Azure Blob Storage con acceso público
 
 2. **Category** (Categoría)
    - `Id`, `Name`, `Description`, `CreatedAt`
@@ -293,6 +302,7 @@ MvcAlimentosApp/
 | GET | `/api/products/{id}` | Obtener producto por ID | Público |
 | GET | `/api/products/low-stock?threshold=5` | Productos con stock bajo | Admin |
 | POST | `/api/products` | Crear nuevo producto | Admin |
+| POST | `/api/products/upload-image` | Subir imagen de producto | Admin |
 | PUT | `/api/products/{id}` | Actualizar producto | Admin |
 | DELETE | `/api/products/{id}` | Eliminar producto | Admin |
 
@@ -410,7 +420,7 @@ Al ejecutar la aplicación en modo desarrollo, se crean automáticamente:
 - **Carrito de Compras** - Gestión de items
 - **Checkout** - Proceso de pago (mock)
 - **Dashboard Admin** - Estadísticas y gestión
-- **Gestión de Productos** - CRUD (Admin)
+- **Gestión de Productos** - CRUD (Admin) con subida de imágenes
 - **Gestión de Proveedores** - CRUD (Admin)
 
 ---
@@ -419,11 +429,18 @@ Al ejecutar la aplicación en modo desarrollo, se crean automáticamente:
 
 ### GitHub Actions
 
-El proyecto incluye un workflow de CI/CD configurado en `.github/workflows/dotnet.yml`:
+El proyecto incluye workflows de CI/CD configurados:
 
-- ✅ **Build automático** en cada push a `main`
-- ✅ **Compilación** del proyecto Backend
-- ✅ **Validación** de código
+- ✅ **Backend:** `.github/workflows/main_app-mvcalimentos-sc.yml`
+  - Build y deploy automático a Azure App Service
+  - Se ejecuta en cada push a `main`
+
+- ✅ **Frontend:** `.github/workflows/azure-static-web-apps-icy-river-0e8ac9b0f.yml`
+  - Build y deploy automático a Azure Static Web Apps
+  - Se ejecuta en cada push a `main`
+
+- ✅ **Build/Test:** `.github/workflows/dotnet.yml`
+  - Build y validación de código
 
 ### Protección de Secretos
 
@@ -458,6 +475,46 @@ dotnet ef database update --project Backend
 
 ---
 
+## ☁️ Configuración de Azure Blob Storage
+
+### Para Desarrollo Local
+
+Agrega la configuración en `appsettings.json`:
+
+```json
+"Blob": {
+  "ConnectionString": "TU_CONNECTION_STRING_DE_AZURE_STORAGE",
+  "ContainerName": "product-images"
+}
+```
+
+### Para Producción (Azure App Service)
+
+Configura las siguientes **Application Settings** en Azure Portal:
+
+1. **`Blob__ConnectionString`** (con doble guion bajo `__`)
+   - Valor: Connection string completa de tu Storage Account
+   - Obtener desde: Azure Portal → Storage Account → Access keys
+
+2. **`Blob__ContainerName`** (con doble guion bajo `__`)
+   - Valor: `product-images`
+
+### Configuración del Contenedor
+
+1. Crea un contenedor llamado `product-images` en tu Storage Account
+2. Habilita **"Allow Blob anonymous access"** en la configuración del Storage Account
+3. Configura el contenedor con acceso público **"Blob"** (anonymous read access for blobs only)
+
+### Características
+
+- ✅ Validación de tipos de archivo (jpg, jpeg, png, gif, webp)
+- ✅ Validación de tamaño máximo (5MB)
+- ✅ Generación automática de nombres únicos (GUID)
+- ✅ URLs públicas para acceso directo a las imágenes
+- ✅ Manejo de errores tolerante (la app funciona aunque Blob Storage no esté configurado)
+
+---
+
 ## 🔒 Seguridad
 
 ### Implementado
@@ -473,11 +530,12 @@ dotnet ef database update --project Backend
 
 ### Recomendaciones para Producción
 
-- ⚠️ Usar **Variables de Entorno** o **Azure Key Vault** para secretos
-- ⚠️ Configurar **HTTPS** obligatorio
+- ✅ Usar **Variables de Entorno** en Azure App Service para secretos
+- ✅ Configurar **HTTPS** obligatorio
+- ✅ **Azure Blob Storage** configurado con acceso público para imágenes
 - ⚠️ Implementar **Rate Limiting**
 - ⚠️ Configurar **Logging** y **Monitoring**
-- ⚠️ Usar **Azure SQL Database** con firewall configurado
+- ✅ **Azure SQL Database** con firewall configurado
 
 ---
 
@@ -489,21 +547,23 @@ dotnet ef database update --project Backend
 - [x] Autenticación JWT
 - [x] Verificación de Email
 - [x] Gestión de Productos, Categorías, Proveedores
+- [x] **Subida de Imágenes a Azure Blob Storage**
 - [x] Sistema de Carrito y Órdenes
 - [x] Dashboard Administrativo
 - [x] Frontend React completo
 - [x] CI/CD con GitHub Actions
+- [x] **Despliegue en Azure** (App Service + Static Web Apps)
 - [x] Documentación Swagger
 - [x] Seed Data para desarrollo
 
 ### 🚀 Próximas Mejoras
 
 - [ ] Tests unitarios e integración
-- [ ] Despliegue en Azure
 - [ ] Implementar paginación en endpoints
 - [ ] Búsqueda y filtros avanzados
 - [ ] Notificaciones en tiempo real
 - [ ] Reportes y exportación de datos
+- [ ] Optimización de imágenes (compresión, thumbnails)
 
 ---
 
