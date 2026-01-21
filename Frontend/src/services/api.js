@@ -70,6 +70,15 @@ export const productsAPI = {
   update: (id, data) => api.put(`/products/${id}`, data),
   delete: (id) => api.delete(`/products/${id}`),
   getLowStock: (threshold = 5) => api.get(`/products/low-stock?threshold=${threshold}`),
+  uploadImage: (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return api.post('/products/upload-image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
 };
 
 export const categoriesAPI = {

@@ -12,10 +12,12 @@ namespace SupermarketAPI.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly IBlobService _blobService;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, IBlobService blobService)
         {
             _productService = productService;
+            _blobService = blobService;
         }
 
         [HttpGet]
@@ -90,6 +92,30 @@ namespace SupermarketAPI.Controllers
         {
             var products = await _productService.GetLowStockProductsAsync(threshold);
             return Ok(products);
+        }
+
+        [HttpPost("upload-image")]
+        [Authorize(Policy = "AdminOnly")]
+        public async Task<ActionResult<object>> UploadImage(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest(new { message = "No se proporcionó ningún archivo" });
+            }
+
+            try
+            {
+                var imageUrl = await _blobService.UploadImageAsync(file);
+                return Ok(new { url = imageUrl });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error al subir la imagen: " + ex.Message });
+            }
         }
     }
 }

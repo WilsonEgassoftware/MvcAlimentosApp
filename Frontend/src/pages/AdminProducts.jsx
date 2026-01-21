@@ -12,6 +12,8 @@ const AdminProducts = () => {
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
   const [showAddSupplierModal, setShowAddSupplierModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -71,6 +73,8 @@ const AdminProducts = () => {
       categoryId: '',
       supplierId: '',
     });
+    setSelectedImageFile(null);
+    setImagePreview(null);
     setShowCreateModal(true);
   };
 
@@ -85,6 +89,8 @@ const AdminProducts = () => {
       categoryId: product.categoryId.toString(),
       supplierId: product.supplierId.toString(),
     });
+    setSelectedImageFile(null);
+    setImagePreview(product.imageUrl || null);
     setShowEditModal(true);
   };
 
@@ -103,18 +109,30 @@ const AdminProducts = () => {
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
     try {
+      let imageUrl = formData.imageUrl || null;
+
+      // Si hay un archivo seleccionado, subirlo primero
+      if (selectedImageFile) {
+        toast.loading('Subiendo imagen...');
+        const uploadResponse = await productsAPI.uploadImage(selectedImageFile);
+        imageUrl = uploadResponse.data.url;
+        toast.dismiss();
+      }
+
       const data = {
         name: formData.name,
         description: formData.description || null,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock),
-        imageUrl: formData.imageUrl || null,
+        imageUrl: imageUrl,
         categoryId: parseInt(formData.categoryId),
         supplierId: parseInt(formData.supplierId),
       };
       await productsAPI.create(data);
       toast.success('Producto creado correctamente');
       setShowCreateModal(false);
+      setSelectedImageFile(null);
+      setImagePreview(null);
       loadData();
     } catch (error) {
       const message = error.response?.data?.message || 'Error al crear el producto';
@@ -125,18 +143,30 @@ const AdminProducts = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+      let imageUrl = formData.imageUrl || null;
+
+      // Si hay un archivo seleccionado, subirlo primero
+      if (selectedImageFile) {
+        toast.loading('Subiendo imagen...');
+        const uploadResponse = await productsAPI.uploadImage(selectedImageFile);
+        imageUrl = uploadResponse.data.url;
+        toast.dismiss();
+      }
+
       const data = {
         name: formData.name,
         description: formData.description || null,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock),
-        imageUrl: formData.imageUrl || null,
+        imageUrl: imageUrl,
         categoryId: parseInt(formData.categoryId),
         supplierId: parseInt(formData.supplierId),
       };
       await productsAPI.update(selectedProduct.id, data);
       toast.success('Producto actualizado correctamente');
       setShowEditModal(false);
+      setSelectedImageFile(null);
+      setImagePreview(null);
       loadData();
     } catch (error) {
       const message = error.response?.data?.message || 'Error al actualizar el producto';
@@ -519,15 +549,46 @@ const AdminProducts = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  URL de Imagen
+                  Imagen del Producto
                 </label>
                 <input
-                  type="url"
-                  value={formData.imageUrl}
-                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setSelectedImageFile(file);
+                      // Crear preview
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setImagePreview(reader.result);
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://ejemplo.com/imagen.jpg"
                 />
+                {imagePreview && (
+                  <div className="mt-2">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="h-32 w-32 object-cover rounded border border-gray-300"
+                    />
+                  </div>
+                )}
+                <div className="mt-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    O URL de Imagen (opcional)
+                  </label>
+                  <input
+                    type="url"
+                    value={formData.imageUrl}
+                    onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="https://ejemplo.com/imagen.jpg"
+                  />
+                </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -576,7 +637,11 @@ const AdminProducts = () => {
               <div className="flex justify-end space-x-4 pt-4">
                 <button
                   type="button"
-                  onClick={() => setShowEditModal(false)}
+                  onClick={() => {
+                    setShowEditModal(false);
+                    setSelectedImageFile(null);
+                    setImagePreview(null);
+                  }}
                   className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
                 >
                   Cancelar
