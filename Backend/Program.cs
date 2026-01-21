@@ -128,6 +128,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Redirigir la raíz a Swagger
+app.MapGet("/", () => Microsoft.AspNetCore.Http.Results.Redirect("/swagger"));
+
 // Seed inicial de datos (solo en desarrollo)
 if (app.Environment.IsDevelopment())
 {
