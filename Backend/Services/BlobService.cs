@@ -17,18 +17,33 @@ namespace SupermarketAPI.Services
             if (string.IsNullOrEmpty(connectionString))
             {
                 _logger.LogWarning("Blob:ConnectionString no configurada. La subida de imágenes no funcionará.");
-                throw new InvalidOperationException("Blob:ConnectionString no está configurada en las variables de entorno.");
+                // No lanzar excepción, solo loguear. La app debe poder arrancar sin Blob Storage.
+                _containerClient = null;
+                return;
             }
 
-            var blobServiceClient = new BlobServiceClient(connectionString);
-            _containerClient = blobServiceClient.GetBlobContainerClient(containerName);
-            
-            // Crear el contenedor si no existe con acceso público para lectura
-            _containerClient.CreateIfNotExists(PublicAccessType.Blob);
+            try
+            {
+                var blobServiceClient = new BlobServiceClient(connectionString);
+                _containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+                
+                // Crear el contenedor si no existe con acceso público para lectura
+                _containerClient.CreateIfNotExists(PublicAccessType.Blob);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al inicializar Blob Storage. La subida de imágenes no funcionará.");
+                _containerClient = null;
+            }
         }
 
         public async Task<string> UploadImageAsync(IFormFile file)
         {
+            if (_containerClient == null)
+            {
+                throw new InvalidOperationException("Blob Storage no está configurado. Por favor, configure Blob:ConnectionString en las variables de entorno.");
+            }
+
             if (file == null || file.Length == 0)
             {
                 throw new ArgumentException("El archivo está vacío o es nulo.");
@@ -85,6 +100,11 @@ namespace SupermarketAPI.Services
 
         public async Task<bool> DeleteImageAsync(string imageUrl)
         {
+            if (_containerClient == null)
+            {
+                return false;
+            }
+
             if (string.IsNullOrEmpty(imageUrl))
             {
                 return false;
