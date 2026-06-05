@@ -27,5 +27,12 @@ namespace SupermarketAPI.Models
 
         // Relación inversa con Productos
         public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+
+
+        //revision de los productos proximos a caducar 
+
+        [StringLength(100)]
+        public string  Fechadecaducidad { get; set; }
+
     }
 }

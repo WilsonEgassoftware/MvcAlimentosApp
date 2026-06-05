@@ -6,5 +6,7 @@
         public string? Nombre { get; set; }
         public string? Categoria { get; set; }
         public string? Empresa { get; set; }
+
+        public string? Fechadecaducidad { get; set; }
     }
 }

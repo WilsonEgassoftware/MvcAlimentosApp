@@ -31,3 +31,15 @@ C:\Users\wiy98\source\repos\MvAlimentosApp\obj\Debug\net8.0\refint\MvAlimentosAp
 C:\Users\wiy98\source\repos\MvAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.pdb
 C:\Users\wiy98\source\repos\MvAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.genruntimeconfig.cache
 C:\Users\wiy98\source\repos\MvAlimentosApp\obj\Debug\net8.0\ref\MvAlimentosApp.dll
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.AssemblyInfoInputs.cache
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.AssemblyInfo.cs
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.csproj.CoreCompileInputs.cache
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.RazorAssemblyInfo.cache
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.RazorAssemblyInfo.cs
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.sourcelink.json
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.dll
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\refint\MvAlimentosApp.dll
+C:\Users\jairf\source\repos\MvcAlimentosApp\obj\Debug\net8.0\MvAlimentosApp.pdb

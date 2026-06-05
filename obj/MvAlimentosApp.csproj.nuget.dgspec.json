@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wiy98\\source\\repos\\MvAlimentosApp\\MvAlimentosApp.csproj": {}
+    "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wiy98\\source\\repos\\MvAlimentosApp\\MvAlimentosApp.csproj": {
+    "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wiy98\\source\\repos\\MvAlimentosApp\\MvAlimentosApp.csproj",
+        "projectUniqueName": "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
         "projectName": "MvAlimentosApp",
-        "projectPath": "C:\\Users\\wiy98\\source\\repos\\MvAlimentosApp\\MvAlimentosApp.csproj",
-        "packagesPath": "C:\\Users\\wiy98\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wiy98\\source\\repos\\MvAlimentosApp\\obj\\",
+        "projectPath": "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
+        "packagesPath": "C:\\Users\\jairf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\wiy98\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jairf\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -30,6 +30,7 @@
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -44,10 +45,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
@@ -66,6 +68,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -74,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
