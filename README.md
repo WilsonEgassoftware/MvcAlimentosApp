@@ -567,22 +567,3 @@ Configura las siguientes **Application Settings** en Azure Portal:
 
 ---
 
-## 👥 Contribución
-
-Este es un proyecto de aprendizaje y demostración. Las contribuciones son bienvenidas.
-
----
-
-## 📄 Licencia
-
-Este proyecto es de código abierto y está disponible bajo la licencia MIT.
-
----
-
-## 📧 Contacto
-
-Para preguntas o sugerencias, abre un issue en el repositorio.
-
----
-
-**Desarrollado con ❤️ usando .NET 8 y React**
