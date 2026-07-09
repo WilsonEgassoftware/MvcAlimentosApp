@@ -2,7 +2,8 @@
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
-
+// Registrar el Repositorio como Singleton para este ejercicio (mantiene los datos vivos en memoria)
+builder.Services.AddSingleton<ISupermercadoRepository, SupermercadoRepository>();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
