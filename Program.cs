@@ -14,6 +14,6 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Auth}/{action=Login}/{id?}");
+    pattern: "Identity/{controller=Account}/{action=Register}");
 
 app.Run();
