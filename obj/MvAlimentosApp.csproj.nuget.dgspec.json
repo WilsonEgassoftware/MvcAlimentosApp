@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj": {}
+    "C:\\Users\\ximen\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj": {
+    "C:\\Users\\ximen\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
+        "projectUniqueName": "C:\\Users\\ximen\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
         "projectName": "MvAlimentosApp",
-        "projectPath": "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
-        "packagesPath": "C:\\Users\\jairf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\obj\\",
+        "projectPath": "C:\\Users\\ximen\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
+        "packagesPath": "C:\\Users\\ximen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ximen\\source\\repos\\MvcAlimentosApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jairf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ximen\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -68,24 +62,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.27, 8.0.27]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.27, 8.0.27]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.27, 8.0.27]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.27, 8.0.27]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -94,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

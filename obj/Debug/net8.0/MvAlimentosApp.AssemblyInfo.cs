@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MvAlimentosApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fec66a68e6637b7d6275acfcf9967a85c3e6ce8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+33449493d69348fd0026db8d996527ab3bc657d2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MvAlimentosApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MvAlimentosApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

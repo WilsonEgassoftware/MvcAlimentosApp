@@ -1,14 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kPIzQXYIl4A=",
+  "dgSpecHash": "4NWXRamUBSY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jairf\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
+  "projectFilePath": "C:\\Users\\ximen\\source\\repos\\MvcAlimentosApp\\MvAlimentosApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jairf\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512",
-    "C:\\Users\\jairf\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.27\\microsoft.windowsdesktop.app.ref.8.0.27.nupkg.sha512",
-    "C:\\Users\\jairf\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.27\\microsoft.netcore.app.ref.8.0.27.nupkg.sha512",
-    "C:\\Users\\jairf\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.27\\microsoft.aspnetcore.app.ref.8.0.27.nupkg.sha512",
-    "C:\\Users\\jairf\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.27\\microsoft.netcore.app.host.win-x64.8.0.27.nupkg.sha512"
+    "C:\\Users\\ximen\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512"
   ],
   "logs": []
 }
